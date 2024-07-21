@@ -7,12 +7,10 @@ require("dotenv").config();
 const port = 3000;
 
 //middleware
+app.use(express.static("./public"));
 app.use(express.json());
-//routes
-app.get("/hello", (req, res) => {
-  res.send("Task manager app");
-});
 
+//routes
 app.use("/api/v1/tasks", tasks);
 
 // app.get("/api/v1/tasks");           - get all tasks
