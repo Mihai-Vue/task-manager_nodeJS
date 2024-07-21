@@ -3,6 +3,7 @@ const app = express();
 const tasks = require("./routes/tasks");
 const connectDB = require("./db/connect");
 require("dotenv").config();
+const notFound = require("./middleware/not-found");
 
 const port = 3000;
 
@@ -13,11 +14,7 @@ app.use(express.json());
 //routes
 app.use("/api/v1/tasks", tasks);
 
-// app.get("/api/v1/tasks");           - get all tasks
-// app.post("/api/v1/tasks");          - create a task
-// app.get("/api/v1/tasks/:id");       - get a specific task
-// app.patch("/api/v1/tasks/:id");     - update task
-// app.delete("/api/v1/tasks/:id");    - delete task
+app.use(notFound);
 
 const start = async () => {
   try {
